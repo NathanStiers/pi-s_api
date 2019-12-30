@@ -3,7 +3,11 @@
  */
 
 const express = require('express');
+const bodyParser = require('body-parser')
 const usersRouter = require('../routes/users');
+const oldJobsRouter = require('../routes/oldJobs')
+const futureJobsRouter = require('../routes/futureJobs')
+
 
 
 /**
@@ -11,8 +15,8 @@ const usersRouter = require('../routes/users');
  */
 
 // Global variables
-const host = 'localhost';
-const port = 8080;
+const host = process.env.HOST
+const port = process.env.PORT
 const app = express();
 
 
@@ -22,7 +26,10 @@ const app = express();
  */
 
 // Configure routes
+app.use(bodyParser.json({limit:"1.1MB"}))
 app.use('/users', usersRouter);
+app.use('/oldjobs', oldJobsRouter)
+app.use('/futurejobs', futureJobsRouter)
 
 // Start server
 var start = function (callback) {
