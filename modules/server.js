@@ -16,7 +16,7 @@ const futureJobsRouter = require('../routes/futureJobs')
 
 // Global variables
 const host = process.env.HOST
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 const app = express();
 
 
